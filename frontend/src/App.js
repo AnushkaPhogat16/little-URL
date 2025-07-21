@@ -35,22 +35,50 @@ function App() {
           <BrowserRouter>
             <nav className="navbar">
               <Link to="/" className="logo">
-                <Link2 size={24} />
-                LittleURL
+                <div className="logo-icon">
+                  <Link2 size={28} />
+                </div>
+                <span className="logo-text">LittleURL</span>
               </Link>
               <div className="nav-links">
-                <Link to="/">Home</Link>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/" className="nav-link">
+                  <span>Home</span>
+                </Link>
+                <Link to="/dashboard" className="nav-link">
+                  <BarChart3 size={18} />
+                  <span>Dashboard</span>
+                </Link>
                 <button onClick={toggleTheme} className="theme-btn">
-                  {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                  <div className="theme-icon">
+                    {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                  </div>
                 </button>
-                {user && <button onClick={logout} className="logout-btn">Logout</button>}
+                {user && (
+                  <button onClick={logout} className="logout-btn">
+                    <span>Logout</span>
+                  </button>
+                )}
               </div>
             </nav>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/dashboard" element={user ? <Dashboard /> : <Login />} />
-            </Routes>
+            
+            <main className="main-content">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element={user ? <Dashboard /> : <Login />} />
+              </Routes>
+            </main>
+            
+            <footer className="footer">
+              <div className="footer-content">
+                <div className="footer-brand">
+                  <Link2 size={20} />
+                  <span>LittleURL</span>
+                </div>
+                <p className="footer-text">
+                  Fast, reliable URL shortening service
+                </p>
+              </div>
+            </footer>
           </BrowserRouter>
         </div>
       </ThemeContext.Provider>
